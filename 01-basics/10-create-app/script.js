@@ -5,15 +5,21 @@ const App = defineComponent({
   name: 'App',
   setup() {
     const dateFormat = {
-        dateStyle: 'long'
+      dateStyle: 'long'
     };
     return {
-        dateFormat,
+      formatDate,
     }
+
+    function formatDate(date) {
+      return date.toLocaleDateString(navigator.language, dateFormat)
+    }
+
   },
-template: `
+
+  template: `
     <div class="container">
-        <div>Сегодня: {{ new Date().toLocaleDateString("ru-RU", dateFormat) }}</div>
+        <div>Сегодня {{ formatDate(new Date()) }}</div>
     </div>
   `,
 })
