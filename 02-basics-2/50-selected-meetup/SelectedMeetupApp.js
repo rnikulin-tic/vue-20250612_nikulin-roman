@@ -51,8 +51,7 @@ export default defineComponent({
         <button class="button button--secondary" type="button" :disabled="currentMeetupId <= 1" @click="prevMeeting">Предыдущий</button>
 
         <div class="radio-group" role="radiogroup">
-          <template v-for="meetupId in [1, 2, 3, 4, 5]" :key="meetupId">
-              <div class="radio-group__button">
+              <div class="radio-group__button" v-for="meetupId in 5" :key="meetupId">
               <input
                 :id="'meetup-id-' + meetupId"
                 class="radio-group__input"
@@ -63,7 +62,6 @@ export default defineComponent({
               />
               <label :for="'meetup-id-' + meetupId" class="radio-group__label">{{ meetupId }}</label>
             </div>
-          </template>
         </div>
 
         <button class="button button--secondary" type="button" :disabled="currentMeetupId >= 5" @click="nextMeeting">Следующий</button>
