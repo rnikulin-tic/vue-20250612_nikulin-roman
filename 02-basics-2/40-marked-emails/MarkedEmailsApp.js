@@ -35,9 +35,16 @@ export default defineComponent({
   setup() {
     const search = ref('')
 
-    const markedEmails = (email) => {
-      return search.value && email.toLowerCase().includes(search.value.toLowerCase()) 
-    }
+    const markedEmails = computed(() => {
+      const searchFilter = (email) => {
+        return search.value && email.toLowerCase().includes(search.value.toLowerCase())
+      }
+      return emails.filter((email) => searchFilter(email))
+    })
+
+    // const markedEmails = (email) => {
+    //   return search.value && email.toLowerCase().includes(search.value.toLowerCase()) 
+    // }
 
     return {
       search,
@@ -52,7 +59,7 @@ export default defineComponent({
         <input type="search" aria-label="Search" v-model="search"/>
       </div>
       <ul aria-label="Emails">
-        <li v-for="email in emails" :key="email" :class="{ marked :  markedEmails(email) }" >
+        <li v-for="email in emails" :key="email" :class="{ marked :  markedEmails.includes(email) }" >
           {{ email }}
         </li>
       </ul>
