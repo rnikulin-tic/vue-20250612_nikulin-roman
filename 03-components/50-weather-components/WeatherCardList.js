@@ -18,7 +18,7 @@ export default defineComponent({
 
     icons: {
       type: Object,
-      required: true,
+      required: false,
     }
   },
 
