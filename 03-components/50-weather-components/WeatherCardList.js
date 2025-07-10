@@ -52,7 +52,7 @@ export default defineComponent({
   template: `
       <ul class="weather-list unstyled-list">
         <li v-for="weather in weathers" class="weather-card" :class="{ 'weather-card--night': isNight(weather.current.dt, weather.current.sunrise, weather.current.sunset) }" >
-          <WeatherCard :weather="weather" :icon="icons[weather.current.weather.id]" />
+          <WeatherCard :weather="weather" :icons="icons" />
         </li>
       </ul>
   `,

@@ -10,8 +10,8 @@ export default defineComponent({
             required: true,
         },
 
-        icon: {
-            type: String,
+        icons: {
+            type: Object,
             required: true,
         }
 
@@ -19,7 +19,7 @@ export default defineComponent({
 
     template: `
           <div v-if="weather.alert" class="weather-alert">
-                <span class="weather-alert__icon">{{ icon }}</span>
+                <span class="weather-alert__icon">{{ icons[weather.current.weather.id] }}</span>
                 <span class="weather-alert__description">{{ weather.alert.sender_name }}: {{ weather.alert.description }}</span>
           </div>
           <div>
@@ -31,7 +31,7 @@ export default defineComponent({
             </div>
           </div>
           <div class="weather-conditions">
-            <div class="weather-conditions__icon" :title="weather.current.weather.description">{{ icon }}</div>
+            <div class="weather-conditions__icon" :title="weather.current.weather.description">{{ icons[weather.current.weather.id] }}</div>
             <div class="weather-conditions__temp">{{ (weather.current.temp - 273.15).toFixed(1) }} °C</div>
           </div>
           <div class="weather-details">
