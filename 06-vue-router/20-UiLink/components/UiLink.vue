@@ -1,10 +1,22 @@
-<script setup>
+<script setup lang="ts">
 // Вместо <span> должен быть <RouterLink> или <a>
 // Используйте динамический компонент <component :is="...">
+
+import { computed } from 'vue'
+
+const props = defineProps<{
+    to?: Object | string,
+    href?: string 
+}>()
+
+  const linkComponent = computed(() => props.to ? 'RouterLink' : 'a')
+
 </script>
 
 <template>
-  <span class="link" tabindex="0">Link</span>
+  <component :is="linkComponent" :to="to" :href="href">
+    <slot />
+  </component>
 </template>
 
 <style scoped>
