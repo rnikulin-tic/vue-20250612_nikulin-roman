@@ -1,9 +1,21 @@
-<script setup lang="ts"></script>
+<script setup lang="ts" generic="T extends { text: string; value: string }">
+
+defineProps<{
+  modelValue: T,
+  options: T[]
+}>()
+
+const emit = defineEmits(['update:modelValue']);
+
+function onChange(event: any) {
+  emit('update:modelValue', event.target.value);
+}
+
+</script>
 
 <template>
-  <select class="select">
-    <option value="value-1">One</option>
-    <option value="value-2">Two</option>
+  <select class="select" :value="modelValue" @change="onChange" >
+    <option v-for="option in options" :value="option.value">{{ option.text }}</option>
   </select>
 </template>
 
